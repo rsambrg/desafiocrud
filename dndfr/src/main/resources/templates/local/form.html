@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Nova Localização</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Adicionar Nova Localização</h1>
+    <form th:action="@{/local/salvar}" th:object="${local}" method="post">
+        <input type="hidden" th:field="*{codigoPostal}"/>
+        <div>
+            <label for="nomeLocal">Nome:</label>
+            <input type="text" id="nomeLocal" th:field="*{nomeLocal}">
+        </div>
+        <div>
+            <label for="descLocal">Descrição:</label>
+            <input type="text" id="descLocal" th:field="*{descLocal}">
+        </div>
+        <div>
+            <label for="histLocal">História</label>
+            <input type="text" id="histLocal" th:field="*{histLocal}">
+        </div>
+        <div>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+    <a th:href="@{/local}">Voltar</a><br>
+    <a th:href="@{/home}">Inicio</a>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Bem-vindo à Página Inicial</h1>
+    <h2>Lista de NPCs</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Classe</th>
+                <th>Raça</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="npc : ${npcs}">
+                <td th:text="${npc.id}"></td>
+                <td>
+                    <a th:href="@{/npc/detalhes/{id}(id=${npc.id})}" th:text="${npc.nome}">
+                        <span th:text="${npc.nome}"></span>
+                    </a>
+                </td>
+                <td th:text="${npc.classe}"></td>
+                <td>
+                    <span th:each="racas : ${npc.racas}" th:text="${racas.nome} + ' '" th:remove="tag"></span>
+                </td>
+                <td th:text="${npc.descricao}"></td>
+                <td>
+                    <a th:href="@{/npc/editar/{id}(id=${npc.id})}">Editar</a>
+                    <a th:href="@{/npc/deletar/{id}(id=${npc.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/npc/novo}">Novo NPC</a>
+    <h2>Lista de Itens</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${itens}">
+                <td th:text="${item.id}"></td>
+                <td>
+                    <a th:href="@{/itens/detalhes/{id}(id=${item.id})}" th:text="${item.nome}">
+                        <span th:text="${item.nome}"></span>
+                    </a>
+                </td>
+                <td th:text="${item.descricao}"></td>
+                <td th:text="${item.valor}"></td>
+                <td>
+                    <a th:href="@{/itens/editar/{id}(id=${item.id})}">Editar</a>
+                    <a th:href="@{/itens/deletar/{id}(id=${item.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/itens/novo}">Novo Item</a>
+    <h2>Localizações Importantes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Código Postal</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>História</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="local: ${localizacoes}">
+                <td th:text="${local.codigoPostal}"></td>
+                <td>
+                    <a th:href="@{/local/detalhes/{id}(id=${local.codigoPostal})}" th:text="${local.nomeLocal}">
+                        <span th:text="${local.nomeLocal}"></span>
+                    </a>
+                </td>
+                <td th:text="${local.descLocal}"></td>
+                <td th:text="${local.histLocal}"></td>
+                <td>
+                    <a th:href="@{/local/editar/{codigoPostal}(codigoPostal=${local.codigoPostal})}">Editar</a>
+                    <a th:href="@{/local/deletar/{codigoPostal}(codigoPostal=${local.codigoPostal})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/local/novo}">Nova Localizações</a>
+    <h2>Lista de Skills</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Raças</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="skill : ${skill}">
+                <td th:text="${skill.id}"></td>
+                <td>
+                    <a th:href="@{/skill/detalhes/{id}(id=${skill.id})}" th:text="${skill.nome}">
+                        <span th:text="${skill.nome}"></span>
+                    </a>
+                </td>
+                <td th:text="${skill.descricao}"></td>
+                <td>
+                    <span th:each="racas : ${skill.racas}" th:text="${racas.nome} + ' '" th:remove="tag"></span>
+                </td>
+                <td>
+                    <a th:href="@{/skill/editar/{id}(id=${skill.id})}">Editar</a>
+                    <a th:href="@{/skill/deletar/{id}(id=${skill.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/skill/novo}">Nova Skill</a>
+    <h2>Lista de Raças</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Aparencia</th>
+                <th>Local</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="racas : ${racas}">
+                <td th:text="${racas.id}"></td>
+                <td>
+                    <a th:href="@{/racas/detalhes/{id}(id=${racas.id})}" th:text="${racas.nome}">
+                        <span th:text="${racas.nome}"></span>
+                    </a>
+                </td>
+                <td th:text="${racas.descricao}"></td>
+                <td th:text="${racas.aparencia}"></td>
+                <td>
+                    <span th:each="local : ${racas.Localizacoes}" th:text="${local.nomeLocal} + ' '" th:remove="tag"></span>
+                </td>
+                <td>
+                    <a th:href="@{/racas/editar/{id}(id=${racas.id})}">Editar</a>
+                    <a th:href="@{/racas/deletar/{id}(id=${racas.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/racas/novo}">Nova Raça</a>
+</body>
+</html>

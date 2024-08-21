@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de locals</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Detalhes do local</h1>
+    <div>
+        <p><strong>Codigo Postal:</strong> <span th:text="${localizacoes.codigoPostal}"></span></p>
+        <p><strong>Nome:</strong> <span th:text="${localizacoes.nomeLocal}"></span></p>
+        <p><strong>Descrição:</strong> <span th:text="${localizacoes.descLocal}"></span></p>
+        <p><strong>História:</strong> <span th:text="${localizacoes.histLocal}"></span></p>
+    </div>
+    <a href="/local">Voltar para a lista de locais</a>
+</body>
+</html>

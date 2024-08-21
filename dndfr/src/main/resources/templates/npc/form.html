@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-Br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de Novos Personagens</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Criação de novos Personagens</h1>
+    <form th:action="@{/npc/salvar}" th:object="${npc}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nomeNpc" th:field="*{nome}">
+        </div>
+        <div>
+            <label for="classe">Classe:</label>
+            <input type="text" id="classeNpc" th:field="*{classe}">
+        </div>
+        <div>
+            <label>Raças:</label>
+            <div class="select-container">
+                <select th:id="racaSelect" th:name="racaId" th:field="*{racasIds}">
+                    <option value="" disabled selected>Selecione uma raça</option>
+                    <option th:each="racas : ${racas}" th:value="${racas.id}" th:text="${racas.nome}"
+                            th:selected="${npc.racasIds == racas.id}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div><label for="descricao">Descrição:</label>
+            <input type="text" id="descNpc" th:field="*{descricao}">
+        </div>
+        <div>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+    <a th:href="@{/npc}">Voltar para lista</a><br>
+    <a th:href="@{/home}">Inicio</a>
+</body>
+</html>

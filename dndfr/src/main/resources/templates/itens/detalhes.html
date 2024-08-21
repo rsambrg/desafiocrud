@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de itenss</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Detalhes do Item</h1>
+    <div>
+        <p><strong>Nome:</strong> <span th:text="${itens.nome}"></span></p>
+        <p><strong>Descrição:</strong> <span th:text="${itens.descricao}"></span></p>
+        <p><strong>Valor:</strong> <span th:text="${itens.valor}"></span></p>
+    </div>
+    <a href="/itens">Voltar para a lista de itens</a>
+</body>
+</html>

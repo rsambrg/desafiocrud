@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-Br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de Novos Personagens</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        .checkbox-container {
+            display: flex;
+            flex-direction: column;
+            margin:auto;
+        }
+
+        .checkbox-item {
+            display: flex;
+            padding: 2px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin: 0;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Criação de novos Personagens</h1>
+    <form th:action="@{/skill/salvar}" th:object="${skill}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nomeSkill" th:field="*{nome}">
+        </div>
+        <div><label for="descricao">Descrição:</label>
+            <input type="text" id="descSkill" th:field="*{descricao}">
+        </div>
+        <div>
+            <label>Raças:</label>
+            <div class="checkbox-container">
+                <div th:each="racas : ${racas}" class="checkbox-item">
+                    <input type="checkbox" th:id="'raca_' + ${racas.id}" th:name="'racasIds'" th:value="${racas.id}"
+                        th:field="*{racasIds}"
+                        th:checked="${skill.racasIds != null && skill.racasIds.contains(racas.id)}" />
+                    <label th:for="'raca_' + ${racas.id}" th:text="${racas.nome}"></label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+    <a th:href="@{/skill}">Voltar para lista</a><br>
+    <a th:href="@{/home}">Inicio</a>
+</body>
+
+</html>

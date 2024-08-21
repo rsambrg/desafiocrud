@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de NPCs</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Detalhes da Skill</h1>
+    <div>
+        <p><strong>Nome:</strong> <span th:text="${skill.nome}"></span></p>
+        <p><strong>Descrição:</strong> <span th:text="${skill.descricao}"></span></p>
+        <p>Raças: 
+            <li  style="list-style-type: none;" th:each="racas : ${skill.racas}" th:text="${racas.nome}">
+
+            </li>
+        </p>
+    </div>
+    <a href="/skill">Voltar para a lista de Skills</a>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de skills</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Lista de skills</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>   
+                <th>Raças</th>
+                <th>Descricao</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="skill : ${skill}">
+                <td th:text="${skill.id}"></td>
+                <td>
+                    <a th:href="@{/skill/detalhes/{id}(id=${skill.id})}" th:text="${skill.nome}">
+                        <span th:text="${skill.nome}"></span>
+                    </a>
+                </td>
+                <td>
+                    <span th:each="racas : ${skill.racas}" th:text="${racas.nome} + ' '" th:remove="tag"></span>
+                </td>
+                <td th:text="${skill.descricao}"></td>
+                <td>
+                    <a th:href="@{/skill/editar/{id}(id=${skill.id})}">Editar</a>
+                    <a th:href="@{/skill/deletar/{id}(id=${skill.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/skill/novo}">Nova Skill</a>
+</body>
+</html>

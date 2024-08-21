@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-Br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de Novas Raças</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Criação de novas Raças</h1>
+    <form th:action="@{/racas/salvar}" th:object="${racas}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nomeRacas" th:field="*{nome}">
+        </div>
+        <div>
+            <label for="aparencia">Aparencia:</label>
+            <input type="text" id="aparenciaRacas" th:field="*{aparencia}">
+        </div>
+        <div>
+            <label>Localizações:</label>
+            <div class="checkbox-container">
+                <div th:each="local : ${localizacoes}" class="checkbox-item">
+                    <input type="checkbox" 
+                           th:id="'local_' + ${local.codigoPostal}" 
+                           th:name="'localIds'" 
+                           th:value="${local.codigoPostal}"
+                           th:field="*{localIds}"
+                           th:checked="${racas.localIds != null && racas.localIds.contains(local.codigoPostal)}"/>
+                    <label th:for="'local_' + ${local.codigoPostal}" th:text="${local.nomeLocal}"></label>
+                </div>
+            </div>
+        </div>
+        <div><label for="descricao">Descrição:</label>
+            <input type="text" id="descRacas" th:field="*{descricao}">
+        </div>
+        <div>
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+    <a th:href="@{/racas}">Voltar para lista</a><br>
+    <a th:href="@{/}">Inicio</a>
+</body>
+</html>

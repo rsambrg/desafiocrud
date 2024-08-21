@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de raças</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Detalhes da Raça</h1>
+    <div>
+        <p><strong>Nome:</strong> <span th:text="${racas.nome}"></span></p>
+        <p><strong>Aparencia:</strong> <span th:text="${racas.aparencia}"></span></p>
+        <p><strong>Descrição:</strong> <span th:text="${racas.descricao}"></span></p>
+        <p>Locais: 
+            <li th:each="local : ${racas.localizacoes}" th:text="${local.nomeLocal}"></li>
+        </p>
+    </div>
+    <a href="/racas">Voltar para a lista de raças</a>
+</body>
+</html>

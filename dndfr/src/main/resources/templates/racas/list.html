@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de racas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Lista de racas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Aparencia</th>
+                <th>Local</th>
+                <th>Descricao</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="racas : ${racas}">
+                <td th:text="${racas.id}"></td>
+                <td>
+                    <a th:href="@{/racas/detalhes/{id}(id=${racas.id})}" th:text="${racas.nome}">
+                        <span th:text="${racas.nome}"></span>
+                    </a>
+                </td>
+                <td th:text="${racas.aparencia}"></td>
+                <td>
+                    <span th:each="local : ${racas.localizacoes}" th:text="${local.nomeLocal} + ' '" th:remove="tag"></span>
+                </td>
+                <td th:text="${racas.descricao}"></td>
+                <td>
+                    <a th:href="@{/racas/editar/{id}(id=${racas.id})}">Editar</a>
+                    <a th:href="@{/racas/deletar/{id}(id=${racas.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/racas/novo}">Novo Item</a>
+</body>
+</html>

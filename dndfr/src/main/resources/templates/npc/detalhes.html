@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de NPCs</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Detalhes do NPC</h1>
+    <div>
+        <p><strong>Nome:</strong> <span th:text="${npc.nome}"></span></p>
+        <p><strong>Classe:</strong> <span th:text="${npc.classe}"></span></p>
+        <p><strong>Descrição:</strong> <span th:text="${npc.descricao}"></span></p>
+        <p>Raça: <span th:each="racas : ${npc.racas}" th:text="${racas.nome}"></span></p>
+    </div>
+    <a href="/npc">Voltar para a lista de NPCs</a>
+</body>
+</html>

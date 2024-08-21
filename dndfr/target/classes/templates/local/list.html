@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-Br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localizações</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Localizações</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Código Postal</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>História</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="local: ${localizacoes}">
+                <td th:text="${local.codigoPostal}"></td>
+                <td>
+                    <a th:href="@{/local/detalhes/{id}(id=${local.codigoPostal})}" th:text="${local.nomeLocal}">
+                        <span th:text="${local.nomeLocal}"></span>
+                    </a>
+                </td>
+                <td th:text="${local.descLocal}"></td>
+                <td th:text="${local.histLocal}"></td>
+                <td>
+                    <a th:href="@{/local/editar/{codigoPostal}(codigoPostal=${local.codigoPostal})}">Editar</a>
+                    <a th:href="@{/local/deletar/{codigoPostal}(codigoPostal=${local.codigoPostal})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/local/novo}">Nova Localizações</a>
+</body>
+</html>

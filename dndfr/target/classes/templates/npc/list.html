@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de NPCs</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Lista de NPCs</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Classe</th>
+                <th>Raça</th>
+                <th>Descricao</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="npc : ${npc}">
+                <td th:text="${npc.id}"></td>
+                
+                <td>
+                    <a th:href="@{/npc/detalhes/{id}(id=${npc.id})}" th:text="${npc.nome}">
+                        <span th:text="${npc.nome}"></span>
+                    </a>
+                </td>
+                
+                <td th:text="${npc.classe}"></td>
+                <td>
+                    <span th:each="racas : ${npc.racas}" th:text="${racas.nome} + ' '" th:remove="tag"></span>
+                </td>
+                <td th:text="${npc.descricao}"></td>
+                <td>
+                    <a th:href="@{/npc/editar/{id}(id=${npc.id})}">Editar</a>
+                    <a th:href="@{/npc/deletar/{id}(id=${npc.id})}">Deletar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/npc/novo}">Novo Personagem</a>
+</body>
+</html>
